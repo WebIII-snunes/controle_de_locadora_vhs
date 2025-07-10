@@ -7,24 +7,27 @@ import org.springframework.stereotype.Service;
 import com.example.locadoravhs.models.User;
 import com.example.locadoravhs.repositories.UserRepository;
 
+
+
 @Service
-public class UserService {
+public class AutenticacaoService {
+    
     @Autowired
     UserRepository usuarioRepository;
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public void save(User usuario) throws IllegalArgumentException {
+    public User login(String email, String senha ){
 
-        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
-            throw new IllegalArgumentException("E-mail já cadastrado");
+        User usuario = usuarioRepository.findByEmail(email).get();
+
+        if (usuario == null || !encoder.matches(senha, usuario.getSenha())) {
+            throw new IllegalArgumentException("Usuário ou senha incorretos");
         }
 
-        String senhaCriptografada = encoder.encode(usuario.getSenha());
+        //criar condições de validações
 
-        usuario.setSenha(senhaCriptografada);
-
-        usuarioRepository.save(usuario);
+        return usuario; 
 
     }
 }
