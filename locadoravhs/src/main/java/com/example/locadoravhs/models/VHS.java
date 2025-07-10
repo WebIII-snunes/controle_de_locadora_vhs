@@ -21,10 +21,12 @@ public class VHS {
     private Long id;
     private String title;
     private String imageUrl;  //Caminho ou URL da imagem (opcional)
-    private LocalDate registrationDate;
+    private String director;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    
+    private LocalDate registrationDate;
     
     @Enumerated(EnumType.STRING)
     private TapeStatus status;
