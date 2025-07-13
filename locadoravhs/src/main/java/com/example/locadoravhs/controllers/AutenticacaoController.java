@@ -32,7 +32,7 @@ public class AutenticacaoController {
             User usuario = autenticacaoService.login(email, senha);
             //ja deu certo
             sessao.setAttribute("usuarioLogado", usuario);
-            return "redirect:/home";
+            return "redirect:/vhs";
 
         } catch (Exception e) {
             model.addFlashAttribute("mensagem", e.getMessage());
