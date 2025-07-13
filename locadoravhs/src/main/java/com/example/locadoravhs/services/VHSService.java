@@ -1,5 +1,6 @@
 package com.example.locadoravhs.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,17 @@ import com.example.locadoravhs.repositories.VHSRepository;
 public class VHSService {
     @Autowired
     VHSRepository vhsRepository;
+    
     public List<VHS> findAll() {
         return vhsRepository.findAll();
+    }
+
+    public VHS save(VHS vhs) {
+
+        vhs.setRegistrationDate(LocalDate.now());
+        
+
+        return vhsRepository.save(vhs);
     }
 }
 
