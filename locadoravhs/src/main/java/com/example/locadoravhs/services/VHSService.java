@@ -25,5 +25,22 @@ public class VHSService {
 
         return vhsRepository.save(vhs);
     }
+
+    public VHS findById(Long id) {
+        
+        return vhsRepository.findById(id).orElse(null);
+
+    }
+    public void deleteById(Long id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("Id inválido");
+        }
+
+        VHS existingVHS = vhsRepository.findById(id).orElseThrow(() -> new RuntimeException("VHS não encontrado"));
+    
+        vhsRepository.deleteById(existingVHS.getId());
+        
+    }
+
 }
 

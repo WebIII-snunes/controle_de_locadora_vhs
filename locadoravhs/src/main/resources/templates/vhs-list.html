@@ -33,7 +33,7 @@
                     <td th:text="${vhs.status}">Status</td>
                     <td>
                         <a th:href="@{'/vhs/editar/' + ${vhs.id}}">Editar</a> |
-                        <a th:href="@{'/vhs/deletar/' + ${vhs.id}}" onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</a>
+                        <a th:href="@{'/vhs/delete/' + ${vhs.id}}" onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</a>
                     </td>
                 </tr>
             </tbody>
