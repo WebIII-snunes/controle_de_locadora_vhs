@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 import com.example.locadoravhs.models.Category;
 
 import com.example.locadoravhs.repositories.CategoryRepository;
+import com.example.locadoravhs.repositories.VHSRepository;
 
 @Service
 public class CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Autowired
+    VHSRepository vhsRepository;
 
     public List<Category> findAll() {
         return categoryRepository.findAll();
@@ -34,7 +38,12 @@ public class CategoryService {
 
         Category existingCategory = categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Category não encontrado"));
     
+        if (vhsRepository.existsByCategory(existingCategory)) {
+            throw new RuntimeException();
+        }
+
         categoryRepository.deleteById(existingCategory.getId());
+        
         
     }
 
