@@ -42,5 +42,22 @@ public class VHSService {
         
     }
 
+     public VHS update(VHS updatedVHS) {
+        
+        if (updatedVHS == null || updatedVHS.getId() < 0) {
+            throw new IllegalArgumentException("VHS inválido");
+        }
+
+        VHS existingVHS = vhsRepository.findById(updatedVHS.getId()).orElseThrow(() -> new RuntimeException("VHS não encontrado"));
+        
+        existingVHS.setTitle(updatedVHS.getTitle());
+        existingVHS.setImageUrl(updatedVHS.getImageUrl());
+        existingVHS.setDirector(updatedVHS.getDirector());
+        existingVHS.setCategory(updatedVHS.getCategory());
+        existingVHS.setRegistrationDate(updatedVHS.getRegistrationDate());
+        existingVHS.setStatus(updatedVHS.getStatus());
+
+        return vhsRepository.save(existingVHS);
+    }
 }
 

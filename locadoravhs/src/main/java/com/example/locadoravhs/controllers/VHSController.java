@@ -55,7 +55,25 @@ public class VHSController {
     }
 
 
+    @GetMapping("/update/{id}")
+    public String updateForm(Model model, @PathVariable Long id) {
+        VHS vhs = vhsService.findById(id);
 
+        model.addAttribute("vhs", vhs);
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("statuses", TapeStatus.values());
+        return "vhs-update";
+    }
+
+    @PostMapping("/update")
+    public String update(VHS vhs) {
+
+
+
+        vhsService.update(vhs);
+
+        return "redirect:/vhs";
+    }
 
 
 }
