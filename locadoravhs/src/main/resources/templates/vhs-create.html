@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastrar VHS</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">Cadastrar nova VHS</h1>
+
+        <form th:action="@{/vhs/create}" method="post" th:object="${vhs}" class="card p-4 shadow-sm">
+             <div class="mb-3">
+                <label for="title">Título:</label>
+                <input type="text" id="title" th:field="*{title}" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="imageUrl">URL da Imagem:</label>
+                <input type="text" id="imageUrl" th:field="*{imageUrl}" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="director">Diretor:</label>
+                <input type="text" id="director" th:field="*{director}" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="category">Categoria:</label>
+                <select id="category" th:field="*{category}" required>
+                    <option th:each="cat : ${categories}" 
+                            th:value="${cat.id}" 
+                            th:text="${cat.name}">
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="status">Status:</label>
+                <select id="status" th:field="*{status}" required>
+                    <option th:each="s : ${statuses}" 
+                            th:value="${s}" 
+                            th:text="${s}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="d-flex">
+                <button type="submit" class="btn btn-primary me-2">Salvar</button>
+            </div>
+        </form>
+    </div>
+    <a th:href="@{/vhs}">Voltar</a>
+</body>
+</html>
