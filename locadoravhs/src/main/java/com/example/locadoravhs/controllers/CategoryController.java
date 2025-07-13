@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.locadoravhs.models.Category;
+import com.example.locadoravhs.models.TapeStatus;
+
 import com.example.locadoravhs.services.CategoryService;
 
 import org.springframework.ui.Model;
@@ -46,6 +48,27 @@ public class CategoryController {
     @GetMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id) {
         categoryService.deleteById(id);
+        return "redirect:/category";
+    }
+
+    
+    @GetMapping("/update/{id}")
+    public String updateForm(Model model, @PathVariable Long id) {
+        Category category = categoryService.findById(id);
+
+        model.addAttribute("category", category);
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("statuses", TapeStatus.values());
+        return "category-update";
+    }
+
+    @PostMapping("/update")
+    public String update(Category category) {
+
+
+
+        categoryService.update(category);
+
         return "redirect:/category";
     }
 }

@@ -38,4 +38,20 @@ public class CategoryService {
         
     }
 
+    public Category update(Category updatedCategory) {
+        
+        if (updatedCategory == null || updatedCategory.getId() < 0) {
+            throw new IllegalArgumentException("Category inválido");
+        }
+
+        Category existingCategory = categoryRepository.findById(updatedCategory.getId()).orElseThrow(() -> new RuntimeException("Category não encontrado"));
+        
+        
+    
+        existingCategory.setName(updatedCategory.getName());
+        
+
+        return categoryRepository.save(existingCategory);
+    }
+
 }
