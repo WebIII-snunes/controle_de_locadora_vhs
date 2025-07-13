@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Categorias</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Listagem de Categorias</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="category : ${categoryList}">
+                    <td th:text="${category.id}">ID</td>
+                    <td th:text="${category.name}">Nome</td>
+            
+                    <td>
+                        <a th:href="@{'/category/editar/' + ${category.id}}">Editar</a> |
+                        <a th:href="@{'/category/deletar/' + ${category.id}}" onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/category/create" class="btn">Adicionar Nova Categoria</a>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+        }
+        th, td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #f0f0f0;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #1976d2;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #1565c0;
+        }
+    </style>
+    <a th:href="@{/logout}" class="btn">Sair</a>
+    <a href="/vhs" class="btn">Lista de VHS</a>
+</body>
+</html>

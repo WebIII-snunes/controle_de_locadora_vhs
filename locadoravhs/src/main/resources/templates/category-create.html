@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastrar Categoria</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">Cadastrar nova Categoria</h1>
+
+        <form th:action="@{/category/create}" method="post" th:object="${category}" class="card p-4 shadow-sm">
+             <div class="mb-3">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" th:field="*{name}" class="form-control" required>
+            </div>
+
+            <div class="d-flex">
+                <button type="submit" class="btn btn-primary me-2">Salvar</button>
+            </div>
+        </form>
+    </div>
+    <a th:href="@{/category}">Voltar</a>
+</body>
+</html>
