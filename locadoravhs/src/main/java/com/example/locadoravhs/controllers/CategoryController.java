@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,13 @@ public class CategoryController {
     @PostMapping("/create")
     public String save(Category category) {
         categoryService.save(category);
+        return "redirect:/category";
+    }
+
+
+    @GetMapping("/delete/{id}")
+    public String deleteById(@PathVariable Long id) {
+        categoryService.deleteById(id);
         return "redirect:/category";
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.locadoravhs.models.Category;
+
 import com.example.locadoravhs.repositories.CategoryRepository;
 
 @Service
@@ -21,5 +22,20 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
+    public Category findById(Long id) {
+        
+        return categoryRepository.findById(id).orElse(null);
+
+    }
+    public void deleteById(Long id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("Id inválido");
+        }
+
+        Category existingCategory = categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Category não encontrado"));
+    
+        categoryRepository.deleteById(existingCategory.getId());
+        
+    }
 
 }
