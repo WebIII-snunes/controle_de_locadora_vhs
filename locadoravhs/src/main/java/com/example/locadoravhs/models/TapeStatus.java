@@ -1,5 +1,5 @@
 package com.example.locadoravhs.models;
 
 public enum TapeStatus {
-    DISPONIVEL, ALUGADA, INDISPONIVEL;
+    DISPONIVEL, EMPRESTADA, INDISPONIVEL;
 }
