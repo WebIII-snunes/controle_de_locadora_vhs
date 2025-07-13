@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.locadoravhs.models.Category;
 import com.example.locadoravhs.models.TapeStatus;
@@ -46,8 +47,13 @@ public class CategoryController {
 
 
     @GetMapping("/delete/{id}")
-    public String deleteById(@PathVariable Long id) {
+    public String deleteById(@PathVariable Long id,  RedirectAttributes redirectAttributes) {
+        try {
         categoryService.deleteById(id);
+        redirectAttributes.addFlashAttribute("mensagem", "Excluído com sucesso!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("erro", "Não é possível excluir: Categoria vinculada a uma VHS");
+        }
         return "redirect:/category";
     }
 
