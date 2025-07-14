@@ -26,15 +26,22 @@
 ## 📚 Como rodar o projeto
 1. Clone o repositório ou faça o download do ZIP e extraia o conteúdo.
 2. Abra-o na sua IDE, caso for Visual Studio Code será necessário instalar uma extensão chamada Spring Boot Extension Pack
-3. Configure o `application.properties` conforme o seu banco
+3. Configure o `application.properties` conforme o seu banco:
+
+`spring.datasource.username=seu_usuario
+spring.datasource.password=sua_senha`
+
 4. Rode a aplicação usando o botão da extensão, na extremidade esquerda, chamado de Spring Boot Dashboard
 5. Acesse via navegador: `http://localhost:8080/`
 
 ## 📚 Como utilizar
 1. Cadastre seu usuário
 2. Faça login
-3. Cadastre uma cateogira
+3. Cadastre uma categoria
 4. Cadastre uma fita VHS
 5. Divirta-se!
 ## ✒️ Autora
-## Stefhany Nunes Adiers
+**Stefhany Nunes Adiers**
+
+## 🧾 Licença
+Este projeto foi desenvolvido para fins educacionais.
