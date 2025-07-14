@@ -26,7 +26,8 @@
                 <tr th:each="vhs : ${vhsList}">
                     <td th:text="${vhs.id}">ID</td>
                     <td th:text="${vhs.title}">Título</td>
-                    <td th:text="${vhs.imageUrl}">Imagem</td>
+                    <!-- <td th:text="${vhs.imageUrl}">Imagem</td>    -->
+                    <td> <img  th:src="${vhs.imageUrl}" /></td>
                     <td th:text="${vhs.director}">Diretor</td>
                     <td th:text="${vhs.category}">Categoria</td>
                     <td th:text="${vhs.registrationDate}">Data de registro</td>
@@ -86,6 +87,10 @@
         }
         .btn:hover {
             background: #1565c0;
+        }
+        img {
+            width: 80px;
+            height: 80px;
         }
     </style>
     <a th:href="@{/logout}" class="btn">Sair</a>

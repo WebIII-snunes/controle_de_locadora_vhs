@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 
 @Entity
 @Data
@@ -20,6 +21,8 @@ public class VHS {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    
+    @Lob
     private String imageUrl;  //Caminho ou URL da imagem (opcional)
     private String director;
     @ManyToOne
